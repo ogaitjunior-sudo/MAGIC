@@ -65,7 +65,7 @@ function rand(min: number, max: number) {
 
 export function ParticleStage({ config, speed, intensity, glowOn, seed }: Props) {
   const particles = useMemo(() => {
-    const count = Math.max(4, Math.round(config.count * intensity));
+    const count = Math.max(1, Math.round(config.count * intensity));
     const [sMin, sMax] = config.size ?? [28, 56];
     const [dMin, dMax] = config.duration ?? [2, 5];
     const [oMin, oMax] = config.opacity ?? [0.7, 1];

@@ -94,6 +94,17 @@ function ShowcasePage() {
     return list;
   }, [filter, search, favorites]);
 
+  const simpleEffects = useMemo(() => {
+    let list = EFFECTS.filter((e) => e.category === "minimal");
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      list = list.filter(
+        (e) => e.name.toLowerCase().includes(q) || e.description.toLowerCase().includes(q),
+      );
+    }
+    return list;
+  }, [search]);
+
   const counts = useMemo(() => {
     const c: Record<string, number> = { all: EFFECTS.length, favorites: favorites.length };
     for (const e of EFFECTS) c[e.category] = (c[e.category] ?? 0) + 1;
@@ -427,6 +438,35 @@ function ShowcasePage() {
               })}
             </div>
 
+            {/* Simple effects */}
+            {simpleEffects.length > 0 && (
+              <section className="glass rounded-2xl p-3">
+                <div className="mb-2 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                    <Sparkles className="h-4 w-4" style={{ color: "var(--sunshine)" }} />
+                    <span>Simple Effects</span>
+                  </div>
+                  <button
+                    onClick={() => setFilter("minimal")}
+                    className="rounded-full border px-2.5 py-1 text-[11px] font-bold transition-colors hover:bg-white/10"
+                    style={{ borderColor: "oklch(1 0 0 / 0.1)" }}
+                  >
+                    {counts.minimal ?? 0}
+                  </button>
+                </div>
+                <div className="grid max-h-[220px] grid-cols-3 gap-2 overflow-y-auto pr-1 scrollbar-thin">
+                  {simpleEffects.map((effect) => (
+                    <SimpleEffectButton
+                      key={effect.id}
+                      effect={effect}
+                      active={activeId === effect.id}
+                      onClick={() => playEffect(effect.id)}
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* Effect grid */}
             <div
               className="glass rounded-2xl p-3 flex-1 overflow-y-auto scrollbar-thin"
@@ -468,6 +508,42 @@ function ShowcasePage() {
 }
 
 /* ============== UI BITS ============== */
+
+function SimpleEffectButton({
+  effect,
+  active,
+  onClick,
+}: {
+  effect: Effect;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <motion.button
+      onClick={onClick}
+      whileHover={{ y: -2, scale: 1.03 }}
+      whileTap={{ scale: 0.96 }}
+      className="group relative flex min-h-[72px] flex-col items-center justify-center overflow-hidden rounded-xl border px-2 py-2 text-center transition-all duration-300"
+      style={{
+        background: active
+          ? CATEGORY_GRADIENTS.minimal
+          : "linear-gradient(180deg, oklch(0.29 0.04 280 / 0.78), oklch(0.21 0.04 280 / 0.78))",
+        color: active ? "oklch(0.15 0.02 280)" : "var(--color-foreground)",
+        boxShadow: active ? CATEGORY_GLOW.minimal : "var(--shadow-button)",
+        borderColor: active ? "oklch(1 0 0 / 0.22)" : "oklch(1 0 0 / 0.07)",
+      }}
+    >
+      <span className="text-2xl leading-none">{effect.emoji}</span>
+      <span className="mt-1 w-full truncate text-[10px] font-bold leading-tight">
+        {effect.name.replace(/^Simple\s/, "")}
+      </span>
+      <span
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.08), transparent)" }}
+      />
+    </motion.button>
+  );
+}
 
 function EffectButton({
   effect,

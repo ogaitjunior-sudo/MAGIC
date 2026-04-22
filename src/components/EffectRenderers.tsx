@@ -1209,6 +1209,129 @@ export const EFFECT_RENDERERS: Record<string, EffectRenderer> = {
     duration: [2.4, 3],
     opacity: [0.6, 0.9],
   }),
+  "simple-confetti": stage({
+    emojis: ["🎉", "🎊"],
+    count: 6,
+    motion: "pop",
+    glow: SUNSHINE,
+    size: [28, 42],
+    duration: [1.6, 2.2],
+    opacity: [0.75, 0.95],
+  }),
+  "simple-balloon": stage({
+    emojis: ["🎈"],
+    count: 1,
+    motion: "float-up",
+    glow: ROSE,
+    size: [72, 88],
+    duration: [4, 4.8],
+    opacity: [0.9, 1],
+  }),
+  "simple-coin": stage({
+    emojis: ["🪙"],
+    count: 1,
+    motion: "soft-fade",
+    glow: GOLD,
+    size: [104, 124],
+    duration: [2.2, 2.6],
+    opacity: [0.9, 1],
+  }),
+  "simple-snow": stage({
+    emojis: ["❄️", "❅"],
+    count: 7,
+    motion: "rain",
+    glow: BLUE,
+    size: [20, 30],
+    duration: [4, 5.5],
+    opacity: [0.65, 0.9],
+  }),
+  "simple-rainbow": (props) => (
+    <>
+      <RainbowArc />
+      {stage({
+        emojis: ["✨"],
+        count: 5,
+        motion: "rainbow-arc",
+        glow: SUNSHINE,
+        size: [18, 28],
+        duration: [1.8, 2.4],
+        opacity: [0.6, 0.9],
+      })(props)}
+    </>
+  ),
+  "simple-crown": stage({
+    emojis: ["👑", "✨"],
+    count: 3,
+    motion: "soft-fade",
+    glow: GOLD,
+    size: [56, 96],
+    duration: [2.2, 2.8],
+    opacity: [0.8, 1],
+  }),
+  "simple-check": stage({
+    emojis: ["✅"],
+    count: 1,
+    motion: "soft-fade",
+    glow: EMERALD,
+    size: [112, 132],
+    duration: [2.1, 2.4],
+    opacity: [0.9, 1],
+  }),
+  "simple-fire": stage({
+    emojis: ["🔥"],
+    count: 3,
+    motion: "pop",
+    glow: "#ff8c2a",
+    size: [46, 70],
+    duration: [1.8, 2.4],
+    opacity: [0.8, 1],
+  }),
+  "simple-magic": stage({
+    emojis: ["✨", "⭐", "💫"],
+    count: 3,
+    motion: "pop",
+    glow: VIOLET,
+    size: [34, 52],
+    duration: [1.8, 2.4],
+    opacity: [0.75, 1],
+  }),
+  "simple-moon": (props) => (
+    <>
+      <GlowOrb color={BLUE} size="28vmin" />
+      {stage({
+        emojis: ["🌙"],
+        count: 1,
+        motion: "soft-fade",
+        glow: BLUE,
+        size: [110, 130],
+        duration: [2.8, 3.2],
+        opacity: [0.9, 1],
+      })(props)}
+    </>
+  ),
+  "simple-sun": (props) => (
+    <>
+      <GlowOrb color={SUNSHINE} size="30vmin" />
+      {stage({
+        emojis: ["☀️"],
+        count: 1,
+        motion: "soft-fade",
+        glow: SUNSHINE,
+        size: [112, 132],
+        duration: [2.4, 2.8],
+        opacity: [0.9, 1],
+      })(props)}
+    </>
+  ),
+  "simple-rocket": stage({
+    emojis: ["🚀"],
+    count: 1,
+    motion: "trail",
+    glow: BLUE,
+    size: [70, 86],
+    duration: [2.2, 2.8],
+    opacity: [0.85, 1],
+  }),
 
   // ---------------- FESTIVE ----------------
   "birthday-bash": (props) => (
