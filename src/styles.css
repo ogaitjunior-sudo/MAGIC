@@ -1,0 +1,242 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-emerald: var(--emerald);
+  --color-rose: var(--rose);
+  --color-violet: var(--violet);
+  --color-sunshine: var(--sunshine);
+  --color-sky: var(--sky);
+}
+
+:root {
+  --radius: 1rem;
+
+  /* Deep magical night base */
+  --background: oklch(0.18 0.04 280);
+  --foreground: oklch(0.98 0.01 280);
+
+  --card: oklch(0.22 0.05 280 / 0.6);
+  --card-foreground: oklch(0.98 0.01 280);
+
+  --popover: oklch(0.22 0.05 280);
+  --popover-foreground: oklch(0.98 0.01 280);
+
+  /* Primary: magical violet */
+  --primary: oklch(0.7 0.22 310);
+  --primary-foreground: oklch(0.15 0.02 280);
+
+  --secondary: oklch(0.3 0.06 280);
+  --secondary-foreground: oklch(0.98 0.01 280);
+
+  --muted: oklch(0.28 0.04 280);
+  --muted-foreground: oklch(0.75 0.03 280);
+
+  --accent: oklch(0.7 0.22 150);
+  --accent-foreground: oklch(0.15 0.02 280);
+
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.98 0.01 280);
+
+  --border: oklch(0.35 0.05 280 / 0.5);
+  --input: oklch(0.3 0.05 280);
+  --ring: oklch(0.7 0.22 310);
+
+  /* Theme colors */
+  --gold: oklch(0.82 0.17 85);
+  --emerald: oklch(0.7 0.2 150);
+  --rose: oklch(0.78 0.18 0);
+  --violet: oklch(0.7 0.22 310);
+  --sunshine: oklch(0.88 0.18 95);
+  --sky: oklch(0.78 0.15 230);
+
+  /* Gradients */
+  --gradient-magic: linear-gradient(
+    135deg,
+    oklch(0.7 0.22 310),
+    oklch(0.7 0.2 150),
+    oklch(0.82 0.17 85)
+  );
+  --gradient-thumbs: linear-gradient(135deg, oklch(0.78 0.15 230), oklch(0.7 0.22 310));
+  --gradient-leprechaun: linear-gradient(135deg, oklch(0.7 0.2 150), oklch(0.82 0.17 85));
+  --gradient-flowers: linear-gradient(
+    135deg,
+    oklch(0.78 0.18 0),
+    oklch(0.7 0.22 310),
+    oklch(0.88 0.18 95)
+  );
+  --gradient-mixed: conic-gradient(
+    from 0deg,
+    oklch(0.7 0.22 310),
+    oklch(0.7 0.2 150),
+    oklch(0.82 0.17 85),
+    oklch(0.78 0.18 0),
+    oklch(0.7 0.22 310)
+  );
+  --gradient-stage: radial-gradient(
+    ellipse at center,
+    oklch(0.28 0.08 280 / 0.8),
+    oklch(0.15 0.04 280 / 0.95)
+  );
+  --gradient-bg: radial-gradient(ellipse at top, oklch(0.25 0.08 290), oklch(0.15 0.04 280) 60%);
+
+  /* Shadows & glows */
+  --shadow-glow-violet: 0 0 40px oklch(0.7 0.22 310 / 0.5), 0 0 80px oklch(0.7 0.22 310 / 0.3);
+  --shadow-glow-gold: 0 0 40px oklch(0.82 0.17 85 / 0.6), 0 0 80px oklch(0.82 0.17 85 / 0.3);
+  --shadow-glow-emerald: 0 0 40px oklch(0.7 0.2 150 / 0.6), 0 0 80px oklch(0.7 0.2 150 / 0.3);
+  --shadow-glow-rose: 0 0 40px oklch(0.78 0.18 0 / 0.5), 0 0 80px oklch(0.78 0.18 0 / 0.3);
+  --shadow-card: 0 8px 32px oklch(0.1 0.02 280 / 0.5);
+  --shadow-button: 0 4px 16px oklch(0.1 0.02 280 / 0.4), inset 0 1px 0 oklch(1 0 0 / 0.1);
+
+  /* Transitions */
+  --ease-magic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+  --background: oklch(0.18 0.04 280);
+  --foreground: oklch(0.98 0.01 280);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background: var(--gradient-bg);
+    color: var(--color-foreground);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: oklch(0.22 0.05 280 / 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(1 0 0 / 0.08);
+  }
+
+  .glass-strong {
+    background: oklch(0.2 0.05 280 / 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid oklch(1 0 0 / 0.1);
+  }
+
+  .text-gradient-magic {
+    background: var(--gradient-magic);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glow-violet {
+    box-shadow: var(--shadow-glow-violet);
+  }
+  .glow-gold {
+    box-shadow: var(--shadow-glow-gold);
+  }
+  .glow-emerald {
+    box-shadow: var(--shadow-glow-emerald);
+  }
+  .glow-rose {
+    box-shadow: var(--shadow-glow-rose);
+  }
+
+  .stage-bg {
+    background: var(--gradient-stage);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: oklch(0.4 0.05 280 / 0.5);
+    border-radius: 999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.5 0.08 280 / 0.7);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
